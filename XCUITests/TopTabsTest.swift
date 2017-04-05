@@ -62,7 +62,7 @@ class TopTabsTest: BaseTestCase {
         app.webViews.links.staticTexts["More information..."].press(forDuration: 5)
         app.buttons["Open in New Tab"].tap()
         waitforExistence(app.buttons["Switch"])
-        app.buttons["Switch"].tap()
+        app.buttons["Switch"].tap(force: true)
 
         // Open tab tray to check that both tabs are there
         navigator.goto(TabTray)
