@@ -156,11 +156,11 @@ class ThirdPartySearchTest: BaseTestCase {
         app.buttons["TabTrayController.addTabButton"].tap()
         app.textFields["url"].tap()
         // Try with some search that does not match with content
-        app.typeText("baz")
+        app.typeText("strange charm")
         
         app.scrollViews.otherElements.buttons["Feeling Lucky search"].tap()
         // Ensure that correct search is done
-        waitForValueContains(app.textFields["url"], value: &btnI)
+        waitForValueContains(app.textFields["url"], value: "&btnI")
         let url = app.textFields["url"].value as! String
         XCTAssert(url.hasSuffix("&btnI"), "The URL should indicate that the search was performed using IFL")
     }
