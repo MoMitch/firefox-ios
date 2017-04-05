@@ -22,6 +22,8 @@ class SettingsTest: BaseTestCase {
         navigator.goto(SettingsScreen)
         let appsettingstableviewcontrollerTableviewTable = app.tables["AppSettingsTableViewController.tableView"]
         appsettingstableviewcontrollerTableviewTable.staticTexts["Save Logins"].swipeUp()
+        // Seems it is necessary some wait here to be able to tap on Help
+        sleep(3)
         appsettingstableviewcontrollerTableviewTable.staticTexts["Help"].tap()
 
         waitForValueContains(app.textFields["url"], value: "support.mozilla.org")
