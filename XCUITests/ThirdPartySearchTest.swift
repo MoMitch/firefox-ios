@@ -145,9 +145,14 @@ class ThirdPartySearchTest: BaseTestCase {
         
         app.navigationBars.buttons["customEngineSaveButton"].tap()
 
+        // Redefining the test by selecting the engine as default from settings to avoid the timing issue
         waitforExistence(app.navigationBars["Search"])
         XCTAssert(app.navigationBars["Search"].buttons["Settings"].exists)
-        
+
+        app.tables.cells.element(boundBy: 0).tap()
+        let tablesQuery2 = app.tables
+        tablesQuery2.staticTexts["Feeling Lucky"].tap()
+
         app.navigationBars["Search"].buttons["Settings"].tap()
         app.navigationBars["Settings"].buttons["AppSettingsTableViewController.navigationItem.leftBarButtonItem"].tap()
         
@@ -156,10 +161,10 @@ class ThirdPartySearchTest: BaseTestCase {
         app.buttons["TabTrayController.addTabButton"].tap()
         app.textFields["url"].tap()
         // Try with some search that does not match with content
-        app.typeText("lalalala")
+        app.typeText("baz\r")
         
-        app.scrollViews.otherElements.buttons["Feeling Lucky search"].tap()
-        // Ensure that correct search is done
+        //app.scrollViews.otherElements.buttons["Feeling Lucky search"].tap()
+
         waitForValueContains(app.textFields["url"], value: "&btnI")
         // There is a timing issue, this assertion is checked once the web page for the content strange charme is loaded 
         // there is only a few seconds while that suffix is shown

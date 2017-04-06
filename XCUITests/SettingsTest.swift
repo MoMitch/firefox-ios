@@ -21,7 +21,9 @@ class SettingsTest: BaseTestCase {
     func testHelpOpensSUMOInTab() {
         navigator.goto(SettingsScreen)
         let appsettingstableviewcontrollerTableviewTable = app.tables["AppSettingsTableViewController.tableView"]
-        appsettingstableviewcontrollerTableviewTable.staticTexts["Save Logins"].swipeUp()
+        appsettingstableviewcontrollerTableviewTable.cells["OpenWith.Setting"].swipeUp()
+        appsettingstableviewcontrollerTableviewTable.cells["Logins"].swipeUp()
+
         // Seems it is necessary some wait here to be able to tap on Help
         let helpMenu = appsettingstableviewcontrollerTableviewTable.cells["Help"]
         helpMenu.tap(force: true)
