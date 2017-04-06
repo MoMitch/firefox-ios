@@ -23,8 +23,7 @@ class SettingsTest: BaseTestCase {
         let appsettingstableviewcontrollerTableviewTable = app.tables["AppSettingsTableViewController.tableView"]
         appsettingstableviewcontrollerTableviewTable.staticTexts["Save Logins"].swipeUp()
         // Seems it is necessary some wait here to be able to tap on Help
-        sleep(3)
-        let helpMenu = appsettingstableviewcontrollerTableviewTable.staticTexts["Help"]
+        let helpMenu = appsettingstableviewcontrollerTableviewTable.cells["Help"]
         helpMenu.tap(force: true)
 
         //waitForValueContains(app.textFields["url"], value: "support.mozilla.org")

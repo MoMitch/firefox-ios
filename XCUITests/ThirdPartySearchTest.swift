@@ -156,13 +156,15 @@ class ThirdPartySearchTest: BaseTestCase {
         app.buttons["TabTrayController.addTabButton"].tap()
         app.textFields["url"].tap()
         // Try with some search that does not match with content
-        app.typeText("strange charm")
+        app.typeText("lalalala")
         
         app.scrollViews.otherElements.buttons["Feeling Lucky search"].tap()
         // Ensure that correct search is done
-        //waitForValueContains(app.textFields["url"], value: "&btnI")
-        let url = app.textFields["url"].value as! String
-        XCTAssert(url.hasSuffix("&btnI"), "The URL should indicate that the search was performed using IFL")
+        waitForValueContains(app.textFields["url"], value: "&btnI")
+        // There is a timing issue, this assertion is checked once the web page for the content strange charme is loaded 
+        // there is only a few seconds while that suffix is shown
+        //let url = app.textFields["url"].value as! String
+        //XCTAssert(url.hasSuffix("&btnI"), "The URL should indicate that the search was performed using IFL")
     }
     
     func testCustomEngineFromIncorrectTemplate() {
